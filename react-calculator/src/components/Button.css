@@ -1,0 +1,30 @@
+button {
+  width: 100%;
+  height: 100%;
+  font-size: 32px;
+  font-weight: 600;
+  filter: brightness(1);
+  cursor: pointer;
+  border-radius: 9px;
+  background-color: grey;
+  color: #fff;
+}
+
+button:hover {
+  filter: brightness(0.8);
+}
+
+.pink-button {
+  color: #fff;
+  background-color: #fe4164;
+}
+
+.equals {
+  grid-column: 4;
+  grid-row: 4 / 6;
+}
+
+.zero {
+  grid-row: 5;
+  grid-column: 1 / 3;
+}
