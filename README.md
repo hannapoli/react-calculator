@@ -10,4 +10,5 @@
 3. Run the project:
 `npm start`
 
-![image](https://github.com/user-attachments/assets/2de74a40-3123-4674-8c45-17aa1fcc91ce)
+![image](https://github.com/user-attachments/assets/a79945d3-4ab4-4d56-983c-e1545d8eda17)
+
