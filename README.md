@@ -2,7 +2,7 @@
 
 
 1. Clone this repository and open the prjoct:
-`https://github.com/hannapoli/react-calculator.git calculator`
+`git clone https://github.com/hannapoli/react-calculator.git calculator`
 
 2. Install modules:
 `npm install`
