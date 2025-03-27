@@ -12,10 +12,16 @@ const buttonValues = [
   [0, "."],
 ];
 
+//Support function that converts the number into a string and adds spaces to sepatate 3 digits.
+//(?<!\..*): ensures that we are not inside the decimal part.
+//(\d): Captures a digit.
+//(?=(?:\d{3})+(?:\.|$)): checks if the digit is followed by a group of 3 digits before a decimal or end of string.
+//$1 refers to the captured digit and adds a space (" ") after it.
 const numberToString = (number) =>
   String(number).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1 ");
 
-//StringToNum
+//Support function that converts the number into a string and removes the spaces
+//replaces all the spaces \s globally /g with "" (empty string).
 const removeSpaces = (number) => number.toString().replace(/\s/g, "");
 
 const App = () => {
@@ -118,6 +124,27 @@ const App = () => {
     }
   };
 
+  const buttonClass = (btn) => {
+    if (btn === "=") return "equals pink-button";
+    if (btn === 0) return "zero";
+    if (["AC", "⌫", "/", "x", "-", "+"].includes(btn)) return "pink-button";
+    return "";
+  };
+
+  const buttonHandler = (btn) => {
+    return btn === "AC"
+      ? clearAll
+      : btn === "⌫"
+      ? deleteLast
+      : btn === "/" || btn === "x" || btn === "-" || btn === "+"
+      ? writeOperator
+      : btn === "="
+      ? showResult
+      : btn === "."
+      ? writeDecimal
+      : writeNumber;
+  };
+
   return (
     <Container>
       <Screen value={input.number ? input.number : input.result} />
@@ -126,34 +153,9 @@ const App = () => {
           return (
             <Button
               key={i}
-              className={
-                btn === "="
-                  ? "equals pink-button"
-                  : btn === 0
-                  ? "zero"
-                  : btn === "AC" ||
-                    btn === "⌫" ||
-                    btn === "/" ||
-                    btn === "x" ||
-                    btn === "-" ||
-                    btn === "+"
-                  ? "pink-button"
-                  : ""
-              }
+              className={buttonClass(btn)}
               value={btn}
-              onClick={
-                btn === "AC"
-                  ? clearAll
-                  : btn === "⌫"
-                  ? deleteLast
-                  : btn === "/" || btn === "x" || btn === "-" || btn === "+"
-                  ? writeOperator
-                  : btn === "="
-                  ? showResult
-                  : btn === "."
-                  ? writeDecimal
-                  : writeNumber
-              }
+              onClick={(e) => buttonHandler(btn)(e)}
             />
           );
         })}
